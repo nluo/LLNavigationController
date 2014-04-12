@@ -26,7 +26,6 @@
  */
 
 
-- (void)pushViewController:(UIViewController *)viewController;
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated;
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated completion:(void(^)())completion;
 
