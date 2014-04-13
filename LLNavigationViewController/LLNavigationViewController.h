@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface LLNavigationViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (nonatomic, readonly, retain) UIViewController *topViewController;

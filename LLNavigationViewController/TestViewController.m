@@ -41,12 +41,12 @@
     NSLog(@"pressed %@", self.LLNav);
     BaseViewController *base = [[BaseViewController alloc] initWithNibName:nil bundle:nil];
 
-    [self.LLNav pushViewController:base animated:YES comple	tion:nil];
+    [self.LLNav pushViewController:base animated:YES completion:nil];
 }
 
 
-- (ViewController *)LLNav {
+- (LLNavigationViewController *)LLNav {
 
-    return (ViewController *)self.parentViewController;
+    return (LLNavigationViewController *)self.parentViewController;
 }
 @end

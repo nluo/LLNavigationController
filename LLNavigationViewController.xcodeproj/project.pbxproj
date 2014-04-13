@@ -14,7 +14,7 @@
 		B30F940518F817A80021E1E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B30F940418F817A80021E1E2 /* main.m */; };
 		B30F940918F817A80021E1E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B30F940818F817A80021E1E2 /* AppDelegate.m */; };
 		B30F940C18F817A80021E1E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B30F940A18F817A80021E1E2 /* Main.storyboard */; };
-		B30F940F18F817A80021E1E2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B30F940E18F817A80021E1E2 /* ViewController.m */; };
+		B30F940F18F817A80021E1E2 /* LLNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B30F940E18F817A80021E1E2 /* LLNavigationViewController.m */; };
 		B30F941118F817A80021E1E2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B30F941018F817A80021E1E2 /* Images.xcassets */; };
 		B30F941818F817A80021E1E2 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B30F941718F817A80021E1E2 /* XCTest.framework */; };
 		B30F941918F817A80021E1E2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B30F93F818F817A80021E1E2 /* Foundation.framework */; };
@@ -48,8 +48,8 @@
 		B30F940718F817A80021E1E2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B30F940818F817A80021E1E2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B30F940B18F817A80021E1E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B30F940D18F817A80021E1E2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		B30F940E18F817A80021E1E2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B30F940D18F817A80021E1E2 /* LLNavigationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLNavigationViewController.h; sourceTree = "<group>"; };
+		B30F940E18F817A80021E1E2 /* LLNavigationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLNavigationViewController.m; sourceTree = "<group>"; };
 		B30F941018F817A80021E1E2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B30F941618F817A80021E1E2 /* LLNavigationViewControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LLNavigationViewControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B30F941718F817A80021E1E2 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -125,11 +125,11 @@
 				B30F940718F817A80021E1E2 /* AppDelegate.h */,
 				B30F940818F817A80021E1E2 /* AppDelegate.m */,
 				B30F940A18F817A80021E1E2 /* Main.storyboard */,
-				B30F940D18F817A80021E1E2 /* ViewController.h */,
+				B30F940D18F817A80021E1E2 /* LLNavigationViewController.h */,
 				B30F942D18F9A15A0021E1E2 /* TestViewController.h */,
 				B30F942E18F9A15A0021E1E2 /* TestViewController.m */,
 				B30F942F18F9A15A0021E1E2 /* TestViewController.xib */,
-				B30F940E18F817A80021E1E2 /* ViewController.m */,
+				B30F940E18F817A80021E1E2 /* LLNavigationViewController.m */,
 				B30F941018F817A80021E1E2 /* Images.xcassets */,
 				B30F93FF18F817A80021E1E2 /* Supporting Files */,
 			);
@@ -263,7 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B30F940F18F817A80021E1E2 /* ViewController.m in Sources */,
+				B30F940F18F817A80021E1E2 /* LLNavigationViewController.m in Sources */,
 				B370BB4E18F9A2E800EA98C3 /* BaseViewController.m in Sources */,
 				B30F940918F817A80021E1E2 /* AppDelegate.m in Sources */,
 				B30F943018F9A15A0021E1E2 /* TestViewController.m in Sources */,

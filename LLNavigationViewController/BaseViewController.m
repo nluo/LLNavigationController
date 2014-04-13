@@ -27,6 +27,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"Base";
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(150.f, 50.f, 20.f, 30.f)];
+    label.text = @"base VC";
+    [self.view addSubview:label];
 }
 
 - (void)didReceiveMemoryWarning

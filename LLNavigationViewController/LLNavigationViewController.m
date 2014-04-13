@@ -6,19 +6,22 @@
 //  Copyright (c) 2014 Nick Luo. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "LLNavigationViewController.h"
 #import "TestViewController.h"
 
 #define TRANSITION_TIME 0.4f
 
-@interface ViewController ()
+@interface LLNavigationViewController () <UINavigationBarDelegate>
 
 @property (strong, nonatomic, readwrite) UIViewController *currentContentViewController;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
+@property (nonatomic) BOOL transitionInProgress;
 
 @end
 
-@implementation ViewController
+@implementation LLNavigationViewController
+
+@synthesize currentContentViewController = _currentContentViewController, containerView = _containerView, transitionInProgress = _transitionInProgress;
 
 - (id)initWithRootViewController:(UIViewController *)rootViewController
 {
@@ -40,11 +43,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
-    for (UINavigationItem *item in self.navigationBar.items) {
-        
-            NSLog(@"the navigation bar items are %@", item);
-    }
+    self.navigationBar.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -112,6 +111,61 @@
      }
      ];
 }
+- (UIViewController *)popViewControllerAnimated:(BOOL)animated
+{
+    return [self popViewControllerAnimated:animated withCompletion:nil];
+}
+
+- (UIViewController *)popViewControllerAnimated:(BOOL)animated withCompletion:(void(^)())completion
+{
+    if (self.childViewControllers.count == 1) {
+        return nil;
+    }
+    
+    _transitionInProgress = YES;
+    
+    UIViewController *currentViewController = self.currentContentViewController;
+    UIViewController *toViewController = [self.childViewControllers objectAtIndex:(self.childViewControllers.count-2)];
+    
+    [self.view bringSubviewToFront:currentViewController.view];
+    
+    CGRect currentViewControllerSlideBackFrame = CGRectOffset(currentViewController.view.frame, CGRectGetWidth(self.view.frame), 0);
+    CGRect toViewControllerInitialFrame = CGRectOffset(currentViewController.view.frame, -CGRectGetWidth(self.view.frame), 0);
+    
+    [toViewController willMoveToParentViewController:self];
+    
+    toViewController.view.frame = toViewControllerInitialFrame;
+    
+    [self.containerView insertSubview:toViewController.view belowSubview:currentViewController.view];
+    
+    NSTimeInterval animTime = animated ? TRANSITION_TIME : 0;
+    
+    [UIView animateWithDuration:animTime animations:^(void){
+        currentViewController.view.frame = currentViewControllerSlideBackFrame;
+        toViewController.view.frame = self.containerView.bounds;
+        
+        
+    } completion:^(BOOL finished) {
+        
+        [currentViewController removeFromParentViewController];
+        [currentViewController.view removeFromSuperview];
+
+        self.currentContentViewController = toViewController;
+
+        [toViewController didMoveToParentViewController:self];
+        if (completion) completion();
+
+        _transitionInProgress = NO;
+        
+    }];
+    
+    return toViewController;
+}
+
+- (void)popToViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -124,7 +178,28 @@
     [rootViewController didMoveToParentViewController:self];
     self.currentContentViewController = rootViewController;
     
-    [self.navigationBar pushNavigationItem:rootViewController.navigationItem animated:YES];
+    self.navigationItem.title = rootViewController.title;
+}
+
+#pragma mark UINavigationBar Delegate
+
+- (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPushItem:(UINavigationItem *)item
+{
+    return YES;
+}
+- (void)navigationBar:(UINavigationBar *)navigationBar didPushItem:(UINavigationItem *)item
+{
+    
+}
+- (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item
+{
+    [self popViewControllerAnimated:YES];
+    
+    return YES;
+}
+- (void)navigationBar:(UINavigationBar *)navigationBar didPopItem:(UINavigationItem *)item
+{
+    
 }
 
 @end
