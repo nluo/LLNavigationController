@@ -63,7 +63,7 @@
     NSLog(@"push view controller");
     [self addChildViewController:viewController];
     
-//    _transitionInProgress = YES;
+    _transitionInProgress = YES;
     // the off-screen rect where we transition from
     CGRect offScreen = self.containerView.bounds;
     
@@ -74,17 +74,6 @@
     // Disable the current view controller interaction to prevent user click multiple times of the cell and consequently trigger the push view controler multiple times
     self.currentContentViewController.view.userInteractionEnabled = NO;
     // transition to the new view controller
-    
-//    NSString *newVCTitle = viewController.title;
-    
-//    if (!newVCTitle) {
-//        newVCTitle = [self navBarTitle].title;
-//    }
-    
-//    UINavigationItem *newNavItem = [[UINavigationItem alloc] initWithTitle:newVCTitle]; //[self.navBarTitle title]
-//    newNavItem.rightBarButtonItems = [self.navBarTitle rightBarButtonItems];
-//    newNavItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(goBack)];
-//    [self.navBar pushNavigationItem:newNavItem animated:YES];
     
     
     [self.navigationBar pushNavigationItem:viewController.navigationItem animated:YES];
@@ -162,9 +151,72 @@
     return toViewController;
 }
 
-- (void)popToViewController:(UIViewController *)viewController animated:(BOOL)animated
+- (NSArray *)popToViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    NSMutableArray *popViewControllers = [NSMutableArray array];
+    
+    if ([self.childViewControllers indexOfObject:viewController]!=NSNotFound) {
+        UIViewController *tmp = [self popViewControllerAnimated:animated];
+        [popViewControllers addObject:tmp];
+        while(![tmp isEqual:viewController]) {
+            tmp = [self popViewControllerAnimated:animated];
+            [popViewControllers addObject:tmp];
+        }
+    }
+    return popViewControllers;
+}
+
+- (NSArray *)popToRootViewControllerAnimated:(BOOL)animated
 {
     
+    // if only 1 controller left we return nil
+    if ([self.childViewControllers count] == 1) {
+        return nil;
+    }
+    
+    _transitionInProgress = YES;
+    // Create the view controllers that will be returned in this method
+    NSArray *viewControllers = [[NSMutableArray alloc] init];
+    viewControllers = [self.childViewControllers objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, self.childViewControllers.count-1)]];
+    
+    
+    UIViewController *rootViewController = [self.childViewControllers objectAtIndex:0];
+    UIViewController *currentViewController = [self.childViewControllers lastObject];
+    
+    
+    rootViewController.view.frame = CGRectMake(self.view.bounds.size.width,0,self.view.bounds.size.width,self.view.bounds.size.height);
+    
+    [currentViewController willMoveToParentViewController:nil];
+    
+    NSTimeInterval duration = animated ? TRANSITION_TIME : 0.f;
+    
+    [self.navigationBar popNavigationItemAnimated:animated];
+    [self transitionFromViewController:currentViewController
+                      toViewController:rootViewController
+                              duration:duration
+                               options:0
+                            animations:^{
+                                rootViewController.view.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+                                
+                            }
+                            completion:^(BOOL finished) {
+                                [currentViewController removeFromParentViewController];
+                                [currentViewController.view removeFromSuperview];
+                                
+                                while (self.childViewControllers.count > 1) {
+                                    UIViewController *tmp = [self.childViewControllers lastObject];
+                                    [tmp willMoveToParentViewController:nil];
+                                    [tmp removeFromParentViewController];
+                                    [tmp.view removeFromSuperview];
+                                }
+                                
+                                self.currentContentViewController = rootViewController;
+                                [rootViewController didMoveToParentViewController:self];
+                                _transitionInProgress = NO;
+                            }];
+    
+    
+    return viewControllers;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

@@ -30,7 +30,7 @@
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated completion:(void(^)())completion;
 
 
-- (void) popToViewController: (UIViewController *)viewController animated:(BOOL)animated;
+- (NSArray *) popToViewController: (UIViewController *)viewController animated:(BOOL)animated;
 
 - (NSArray *) popToRootViewControllerAnimated: (BOOL)animated;
 
