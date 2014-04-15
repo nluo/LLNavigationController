@@ -61,4 +61,11 @@
 
 }
 
+- (IBAction)popToViewController:(id)sender {
+    NSLog(@"pop to  view controller");
+    LLNavigationViewController *nav = (LLNavigationViewController *)self.parentViewController;
+    UIViewController *rootViewController = nav.childViewControllers[0];
+    
+    [nav popToViewController:rootViewController animated:YES];
+}
 @end

@@ -100,36 +100,33 @@
     UIViewController *currentViewController = self.currentContentViewController;
     UIViewController *toViewController = [self.childViewControllers objectAtIndex:(self.childViewControllers.count-2)];
     
-    [self.view bringSubviewToFront:currentViewController.view];
-    
-    CGRect currentViewControllerSlideBackFrame = CGRectOffset(currentViewController.view.frame, CGRectGetWidth(self.view.frame), 0);
-    CGRect toViewControllerInitialFrame = CGRectOffset(currentViewController.view.frame, -CGRectGetWidth(self.view.frame), 0);
+    CGRect currentViewControllerSlideBackFrame = CGRectOffset(self.containerView.bounds, CGRectGetWidth(self.view.frame), 0);
+    CGRect toViewControllerInitialFrame = CGRectOffset(self.containerView.bounds, -CGRectGetWidth(self.containerView.bounds), 0);
     
     [toViewController willMoveToParentViewController:self];
+
     
     toViewController.view.frame = toViewControllerInitialFrame;
     
-    [self.containerView insertSubview:toViewController.view belowSubview:currentViewController.view];
-    
-    NSTimeInterval animTime = animated ? TRANSITION_TIME : 0;
-    
-    [UIView animateWithDuration:animTime animations:^(void){
-        currentViewController.view.frame = currentViewControllerSlideBackFrame;
-        toViewController.view.frame = self.containerView.bounds;
-        
-        
-    } completion:^(BOOL finished) {
-        
-        [currentViewController removeFromParentViewController];
-        [currentViewController.view removeFromSuperview];
-        self.currentContentViewController = toViewController;
+    [self transitionFromViewController:currentViewController
+                      toViewController:toViewController
+                              duration:TRANSITION_TIME
+                               options:UIViewAnimationOptionCurveEaseOut
+                            animations:^{
+                                currentViewController.view.frame = currentViewControllerSlideBackFrame;
+                                toViewController.view.frame = self.containerView.bounds;
+                            } completion:^(BOOL finished) {
+                                [currentViewController willMoveToParentViewController:nil];
+                                [currentViewController removeFromParentViewController];
+                                [currentViewController.view removeFromSuperview];
+                                self.currentContentViewController = toViewController;
+                                
+                                [toViewController didMoveToParentViewController:self];
+                                if (completion) completion();
+                                
+                                _transitionInProgress = NO;
 
-        [toViewController didMoveToParentViewController:self];
-        if (completion) completion();
-
-        _transitionInProgress = NO;
-        
-    }];
+                            }];
     
     return toViewController;
 }
@@ -139,11 +136,12 @@
     NSMutableArray *popViewControllers = [NSMutableArray array];
     
     if ([self.childViewControllers indexOfObject:viewController]!=NSNotFound) {
-        UIViewController *tmp = [self popViewControllerAnimated:animated];
+        UIViewController *tmp = [self popViewControllerAnimated:NO];
         [popViewControllers addObject:tmp];
         while(![tmp isEqual:viewController]) {
-            tmp = [self popViewControllerAnimated:animated];
-            [popViewControllers addObject:tmp];
+            [popViewControllers addObject:[self popViewControllerAnimated:NO]];
+            NSLog(@"tmp is %@", tmp);
+            tmp = self.childViewControllers.lastObject;
         }
     }
     return popViewControllers;
@@ -218,7 +216,7 @@
     self.navigationItem.title = rootViewController.title;
 }
 
-
+// A recursion method to pop the navigation item
 - (void)popToRootNavigationItem
 {
     NSArray *navigationItems = self.navigationBar.items;
@@ -251,7 +249,7 @@
     if (!_transitionInProgress) {
         [self popViewControllerAnimated:YES];
     }
-    
+
     return YES;
 }
 - (void)navigationBar:(UINavigationBar *)navigationBar didPopItem:(UINavigationItem *)item

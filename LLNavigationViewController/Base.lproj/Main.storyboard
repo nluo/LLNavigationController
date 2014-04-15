@@ -78,8 +78,20 @@
                                     <action selector="press:" destination="ucz-vL-Zdn" eventType="touchUpInside" id="AEZ-82-THA"/>
                                 </connections>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HFO-3P-o6a">
+                                <rect key="frame" x="135" y="493" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="49" id="bNM-PD-S04"/>
+                                    <constraint firstAttribute="height" constant="31" id="u77-rK-4Bs"/>
+                                </constraints>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="HFO-3P-o6a" secondAttribute="centerX" id="bD0-W2-kdy"/>
+                            <constraint firstItem="NsR-cC-wB3" firstAttribute="top" secondItem="HFO-3P-o6a" secondAttribute="bottom" id="vbE-qt-PJs"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                 </viewController>
@@ -119,8 +131,26 @@
                                     <action selector="popToRootViewController:" destination="3fN-ZP-fXG" eventType="touchUpInside" id="Tpn-dJ-T3W"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4vG-Uz-fx4">
+                                <rect key="frame" x="89" y="334" width="143" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="PopToViewController">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="popToViewController:" destination="3fN-ZP-fXG" eventType="touchUpInside" id="UQS-aJ-k0W"/>
+                                </connections>
+                            </button>
+                            <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="OyP-fl-P37">
+                                <rect key="frame" x="113" y="539" width="94" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </stepper>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="OyP-fl-P37" secondAttribute="centerX" id="S1Y-1H-6es"/>
+                            <constraint firstItem="TrD-lj-w9w" firstAttribute="top" secondItem="OyP-fl-P37" secondAttribute="bottom" id="pDC-Ox-6kb"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MZO-Nv-bG9" userLabel="First Responder" sceneMemberID="firstResponder"/>
