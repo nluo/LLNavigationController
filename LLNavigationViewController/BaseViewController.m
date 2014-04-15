@@ -8,6 +8,7 @@
 
 #import "BaseViewController.h"
 #import "LLNavigationController.h"
+#import "UIViewController+LLNavigation.h"
 
 @interface BaseViewController ()
 
@@ -28,7 +29,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"Base";
+    self.title = [NSString stringWithFormat:@"VC %lu", (unsigned long)self.llNavigationController.childViewControllers.count];
     
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }

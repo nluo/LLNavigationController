@@ -25,6 +25,7 @@
 		B30F943118F9A15A0021E1E2 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B30F942F18F9A15A0021E1E2 /* TestViewController.xib */; };
 		B370BB4E18F9A2E800EA98C3 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B370BB4D18F9A2E800EA98C3 /* BaseViewController.m */; };
 		B370BB8318FD305500EA98C3 /* pushViewControllerSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = B370BB8218FD305500EA98C3 /* pushViewControllerSegue.m */; };
+		B370BB8C18FD804300EA98C3 /* UIViewController+LLNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = B370BB8B18FD804300EA98C3 /* UIViewController+LLNavigation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,8 @@
 		B370BB4D18F9A2E800EA98C3 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		B370BB8118FD305500EA98C3 /* pushViewControllerSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pushViewControllerSegue.h; sourceTree = "<group>"; };
 		B370BB8218FD305500EA98C3 /* pushViewControllerSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pushViewControllerSegue.m; sourceTree = "<group>"; };
+		B370BB8A18FD804300EA98C3 /* UIViewController+LLNavigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LLNavigation.h"; sourceTree = "<group>"; };
+		B370BB8B18FD804300EA98C3 /* UIViewController+LLNavigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LLNavigation.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,9 +126,9 @@
 		B30F93FE18F817A80021E1E2 /* LLNavigationController */ = {
 			isa = PBXGroup;
 			children = (
+				B370BB8018FD300E00EA98C3 /* Storyboard Segues */,
 				B370BB4C18F9A2E800EA98C3 /* BaseViewController.h */,
 				B370BB4D18F9A2E800EA98C3 /* BaseViewController.m */,
-				B370BB8018FD300E00EA98C3 /* Storyboard Segues */,
 				B30F940718F817A80021E1E2 /* AppDelegate.h */,
 				B30F940818F817A80021E1E2 /* AppDelegate.m */,
 				B30F940A18F817A80021E1E2 /* Main.storyboard */,
@@ -136,6 +139,8 @@
 				B30F940E18F817A80021E1E2 /* LLNavigationController.m */,
 				B30F941018F817A80021E1E2 /* Images.xcassets */,
 				B30F93FF18F817A80021E1E2 /* Supporting Files */,
+				B370BB8A18FD804300EA98C3 /* UIViewController+LLNavigation.h */,
+				B370BB8B18FD804300EA98C3 /* UIViewController+LLNavigation.m */,
 			);
 			name = LLNavigationController;
 			path = LLNavigationViewController;
@@ -279,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B370BB8318FD305500EA98C3 /* pushViewControllerSegue.m in Sources */,
+				B370BB8C18FD804300EA98C3 /* UIViewController+LLNavigation.m in Sources */,
 				B30F940F18F817A80021E1E2 /* LLNavigationController.m in Sources */,
 				B370BB4E18F9A2E800EA98C3 /* BaseViewController.m in Sources */,
 				B30F940918F817A80021E1E2 /* AppDelegate.m in Sources */,

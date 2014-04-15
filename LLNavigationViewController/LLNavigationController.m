@@ -30,6 +30,12 @@
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationBar.delegate = self;
     
+    
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
+         self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+   
+    
     @try {
          [self performSegueWithIdentifier:@"SetRootViewController" sender:nil];
     }
