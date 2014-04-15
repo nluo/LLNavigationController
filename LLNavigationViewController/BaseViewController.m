@@ -30,7 +30,7 @@
     // Do any additional setup after loading the view.
     self.title = @"Base";
     
-    NSLog(@"the parent VC is %@", self.parentViewController);
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -64,7 +64,7 @@
 - (IBAction)popToViewController:(id)sender {
     NSLog(@"pop to  view controller");
     LLNavigationViewController *nav = (LLNavigationViewController *)self.parentViewController;
-    UIViewController *rootViewController = nav.childViewControllers[0];
+    UIViewController *rootViewController = nav.childViewControllers[1];
     
     [nav popToViewController:rootViewController animated:YES];
 }

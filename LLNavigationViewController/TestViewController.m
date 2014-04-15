@@ -30,6 +30,7 @@
     // Do any additional setup after loading the view from its nib.
     NSLog(@"hey");
     self.title = @"hello";
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning

@@ -24,6 +24,8 @@
 		B30F943018F9A15A0021E1E2 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B30F942E18F9A15A0021E1E2 /* TestViewController.m */; };
 		B30F943118F9A15A0021E1E2 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B30F942F18F9A15A0021E1E2 /* TestViewController.xib */; };
 		B370BB4E18F9A2E800EA98C3 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B370BB4D18F9A2E800EA98C3 /* BaseViewController.m */; };
+		B370BB8318FD305500EA98C3 /* pushViewControllerSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = B370BB8218FD305500EA98C3 /* pushViewControllerSegue.m */; };
+		B370BB8918FD340500EA98C3 /* TestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B370BB8818FD340500EA98C3 /* TestTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,10 @@
 		B30F942F18F9A15A0021E1E2 /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
 		B370BB4C18F9A2E800EA98C3 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseViewController.h; path = LLNavigationViewController/BaseViewController.h; sourceTree = "<group>"; };
 		B370BB4D18F9A2E800EA98C3 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseViewController.m; path = LLNavigationViewController/BaseViewController.m; sourceTree = "<group>"; };
+		B370BB8118FD305500EA98C3 /* pushViewControllerSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pushViewControllerSegue.h; sourceTree = "<group>"; };
+		B370BB8218FD305500EA98C3 /* pushViewControllerSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pushViewControllerSegue.m; sourceTree = "<group>"; };
+		B370BB8718FD340500EA98C3 /* TestTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTableViewController.h; sourceTree = "<group>"; };
+		B370BB8818FD340500EA98C3 /* TestTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +128,9 @@
 		B30F93FE18F817A80021E1E2 /* LLNavigationViewController */ = {
 			isa = PBXGroup;
 			children = (
+				B370BB8718FD340500EA98C3 /* TestTableViewController.h */,
+				B370BB8818FD340500EA98C3 /* TestTableViewController.m */,
+				B370BB8018FD300E00EA98C3 /* Storyboard Segues */,
 				B30F940718F817A80021E1E2 /* AppDelegate.h */,
 				B30F940818F817A80021E1E2 /* AppDelegate.m */,
 				B30F940A18F817A80021E1E2 /* Main.storyboard */,
@@ -163,6 +172,15 @@
 				B30F942018F817A80021E1E2 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B370BB8018FD300E00EA98C3 /* Storyboard Segues */ = {
+			isa = PBXGroup;
+			children = (
+				B370BB8118FD305500EA98C3 /* pushViewControllerSegue.h */,
+				B370BB8218FD305500EA98C3 /* pushViewControllerSegue.m */,
+			);
+			name = "Storyboard Segues";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,8 +281,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B370BB8318FD305500EA98C3 /* pushViewControllerSegue.m in Sources */,
 				B30F940F18F817A80021E1E2 /* LLNavigationViewController.m in Sources */,
 				B370BB4E18F9A2E800EA98C3 /* BaseViewController.m in Sources */,
+				B370BB8918FD340500EA98C3 /* TestTableViewController.m in Sources */,
 				B30F940918F817A80021E1E2 /* AppDelegate.m in Sources */,
 				B30F943018F9A15A0021E1E2 /* TestViewController.m in Sources */,
 				B30F940518F817A80021E1E2 /* main.m in Sources */,

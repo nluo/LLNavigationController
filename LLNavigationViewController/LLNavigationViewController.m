@@ -29,6 +29,15 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationBar.delegate = self;
+    
+    @try {
+         [self performSegueWithIdentifier:@"SetRootViewController" sender:nil];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Please make sure you have connected your initial view controller to the navigation controller and set the identifier to SetRootViewController. The exception is %@", exception);
+          abort();
+    }
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,11 +54,24 @@
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated completion:(void (^)())completion
 {
+    UIViewController *currentViewController = self.topViewController;
     [self addChildViewController:viewController];
     
+    if (self.childViewControllers.count == 1) {
+        viewController.view.frame = self.containerView.frame;
+        [self.view addSubview:viewController.view];
+        
+        [self.navigationBar pushNavigationItem:viewController.navigationItem animated:NO];
+        return;
+    }
+    
+
+    if (_transitionInProgress) return;
+    
     _transitionInProgress = YES;
+    
     // the off-screen rect where we transition from
-    CGRect offScreen = self.containerView.bounds;
+    CGRect offScreen = self.containerView.frame;
     
     offScreen.origin.x += offScreen.size.width;
     viewController.view.frame = offScreen;
@@ -59,16 +81,19 @@
     self.currentContentViewController.view.userInteractionEnabled = NO;
     // transition to the new view controller
     
-    [self.navigationBar pushNavigationItem:viewController.navigationItem animated:YES];
+    
+    [self.navigationBar pushNavigationItem:viewController.navigationItem animated:animated];
+    
+    NSTimeInterval duration = animated? TRANSITION_TIME: 0;
     
     [self
-     transitionFromViewController:self.currentContentViewController
+     transitionFromViewController:currentViewController
      toViewController:viewController
-     duration:TRANSITION_TIME
+     duration:duration
      options:UIViewAnimationOptionCurveEaseOut
      animations:^{
          
-         viewController.view.frame = self.containerView.bounds;
+         viewController.view.frame = self.containerView.frame;
      }
      completion:^(BOOL finished) {
          
@@ -84,6 +109,11 @@
      }
      ];
 }
+
+- (UIViewController *)topViewController
+{
+    return self.childViewControllers.lastObject;
+}
 - (UIViewController *)popViewControllerAnimated:(BOOL)animated
 {
     return [self popViewControllerAnimated:animated withCompletion:nil];
@@ -97,28 +127,31 @@
     
     _transitionInProgress = YES;
     
-    UIViewController *currentViewController = self.currentContentViewController;
+    UIViewController *currentViewController = self.topViewController;
     UIViewController *toViewController = [self.childViewControllers objectAtIndex:(self.childViewControllers.count-2)];
     
-    CGRect currentViewControllerSlideBackFrame = CGRectOffset(self.containerView.bounds, CGRectGetWidth(self.view.frame), 0);
-    CGRect toViewControllerInitialFrame = CGRectOffset(self.containerView.bounds, -CGRectGetWidth(self.containerView.bounds), 0);
+    CGRect currentViewControllerSlideBackFrame = CGRectOffset(self.containerView.frame, CGRectGetWidth(self.view.frame), 0);
+    CGRect toViewControllerInitialFrame = CGRectOffset(self.containerView.frame, -CGRectGetWidth(self.containerView.bounds), 0);
     
     [toViewController willMoveToParentViewController:self];
 
     
     toViewController.view.frame = toViewControllerInitialFrame;
     
+    NSTimeInterval duration = animated? TRANSITION_TIME: 0;
+    
     [self transitionFromViewController:currentViewController
                       toViewController:toViewController
-                              duration:TRANSITION_TIME
+                              duration:duration
                                options:UIViewAnimationOptionCurveEaseOut
                             animations:^{
                                 currentViewController.view.frame = currentViewControllerSlideBackFrame;
-                                toViewController.view.frame = self.containerView.bounds;
+                                toViewController.view.frame = self.containerView.frame;
                             } completion:^(BOOL finished) {
+                                
                                 [currentViewController willMoveToParentViewController:nil];
                                 [currentViewController removeFromParentViewController];
-                                [currentViewController.view removeFromSuperview];
+            
                                 self.currentContentViewController = toViewController;
                                 
                                 [toViewController didMoveToParentViewController:self];
@@ -133,18 +166,63 @@
 
 - (NSArray *)popToViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    NSMutableArray *popViewControllers = [NSMutableArray array];
-    
-    if ([self.childViewControllers indexOfObject:viewController]!=NSNotFound) {
-        UIViewController *tmp = [self popViewControllerAnimated:NO];
-        [popViewControllers addObject:tmp];
-        while(![tmp isEqual:viewController]) {
-            [popViewControllers addObject:[self popViewControllerAnimated:NO]];
-            NSLog(@"tmp is %@", tmp);
-            tmp = self.childViewControllers.lastObject;
-        }
+
+    if ([self.childViewControllers indexOfObject:viewController] == NSNotFound) {
+        return nil;
     }
-    return popViewControllers;
+    
+    if (self.childViewControllers.count == 1) {
+        return nil;
+    }
+    
+    _transitionInProgress = YES;
+    // Create the view controllers that will be returned in this method
+    NSArray *viewControllers = [[NSMutableArray alloc] init];
+    viewControllers = [self.childViewControllers objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange([self.childViewControllers indexOfObject:viewController], self.childViewControllers.count-1)]];
+    
+    
+    UIViewController *toViewController = viewController;
+    UIViewController *currentViewController = self.topViewController;
+    
+    
+    CGRect currentViewControllerSlideBackFrame = CGRectOffset(self.containerView.frame, CGRectGetWidth(self.view.frame), 0);
+    CGRect toViewControllerInitialFrame = CGRectOffset(self.containerView.frame, -CGRectGetWidth(self.containerView.bounds), 0);
+    
+    toViewController.view.frame = toViewControllerInitialFrame;
+    [currentViewController willMoveToParentViewController:nil];
+    
+    NSTimeInterval duration = animated ? TRANSITION_TIME : 0.f;
+    
+    
+    [self transitionFromViewController:currentViewController
+                      toViewController:toViewController
+                              duration:duration
+                               options:0
+                            animations:^{
+                                [self popToRootNavigationItem];
+                                toViewController.view.frame = self.containerView.frame;
+                                currentViewController.view.frame = currentViewControllerSlideBackFrame;
+                            }
+                            completion:^(BOOL finished) {
+                                [currentViewController removeFromParentViewController];
+                                [currentViewController.view removeFromSuperview];
+                                
+                                while (![self.topViewController isEqual:toViewController]) {
+                                    UIViewController *tmp = self.topViewController;
+                                    [tmp willMoveToParentViewController:nil];
+                                    [tmp removeFromParentViewController];
+                                }
+                                
+                                NSLog(@"the child VCs are %@",self.childViewControllers);
+
+                                
+                                [toViewController didMoveToParentViewController:self];
+                                _transitionInProgress = NO;
+                            }];
+    
+    
+    return viewControllers;
+    
 }
 
 - (NSArray *)popToRootViewControllerAnimated:(BOOL)animated
@@ -162,23 +240,26 @@
     
     
     UIViewController *rootViewController = [self.childViewControllers objectAtIndex:0];
-    UIViewController *currentViewController = [self.childViewControllers lastObject];
+    UIViewController *currentViewController = self.topViewController;
     
     
-    rootViewController.view.frame = CGRectMake(self.view.bounds.size.width,0,self.view.bounds.size.width,self.view.bounds.size.height);
+    CGRect currentViewControllerSlideBackFrame = CGRectOffset(self.containerView.frame, CGRectGetWidth(self.view.frame), 0);
+    CGRect toViewControllerInitialFrame = CGRectOffset(self.containerView.frame, -CGRectGetWidth(self.containerView.bounds), 0);
     
+    rootViewController.view.frame = toViewControllerInitialFrame;
     [currentViewController willMoveToParentViewController:nil];
     
     NSTimeInterval duration = animated ? TRANSITION_TIME : 0.f;
     
-    [self popToRootNavigationItem];
-    
+
     [self transitionFromViewController:currentViewController
                       toViewController:rootViewController
                               duration:duration
                                options:0
                             animations:^{
-                                rootViewController.view.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+                                [self popToRootNavigationItem];
+                                rootViewController.view.frame = self.containerView.frame;
+                                currentViewController.view.frame = currentViewControllerSlideBackFrame;
                             }
                             completion:^(BOOL finished) {
                                 [currentViewController removeFromParentViewController];
@@ -202,19 +283,6 @@
     return viewControllers;
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    [self setRootViewController:segue.destinationViewController];
-}
-
-- (void)setRootViewController: (UIViewController *)rootViewController
-{
-    [self addChildViewController:rootViewController];
-    [rootViewController didMoveToParentViewController:self];
-    self.currentContentViewController = rootViewController;
-    
-    self.navigationItem.title = rootViewController.title;
-}
 
 // A recursion method to pop the navigation item
 - (void)popToRootNavigationItem
