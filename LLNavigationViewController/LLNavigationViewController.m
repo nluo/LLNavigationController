@@ -23,21 +23,6 @@
 
 @synthesize currentContentViewController = _currentContentViewController, containerView = _containerView, transitionInProgress = _transitionInProgress;
 
-- (id)initWithRootViewController:(UIViewController *)rootViewController
-{
-    self = [self initWithNibName:nil bundle:nil];
-    
-    if (self) {
-        [self addChildViewController:rootViewController];
-        self.currentContentViewController = rootViewController;
-        
-        [rootViewController didMoveToParentViewController:self];
-        
-        [self.view addSubview:rootViewController.view];
-    }
-    
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -60,7 +45,6 @@
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated completion:(void (^)())completion
 {
-    NSLog(@"push view controller");
     [self addChildViewController:viewController];
     
     _transitionInProgress = YES;
@@ -74,7 +58,6 @@
     // Disable the current view controller interaction to prevent user click multiple times of the cell and consequently trigger the push view controler multiple times
     self.currentContentViewController.view.userInteractionEnabled = NO;
     // transition to the new view controller
-    
     
     [self.navigationBar pushNavigationItem:viewController.navigationItem animated:YES];
     
@@ -96,7 +79,8 @@
          //[self configureBackButton];
          [viewController didMoveToParentViewController:self];
          
-//         _transitionInProgress = NO;
+         _transitionInProgress = NO;
+        
      }
      ];
 }
@@ -138,7 +122,6 @@
         
         [currentViewController removeFromParentViewController];
         [currentViewController.view removeFromSuperview];
-
         self.currentContentViewController = toViewController;
 
         [toViewController didMoveToParentViewController:self];
@@ -190,14 +173,14 @@
     
     NSTimeInterval duration = animated ? TRANSITION_TIME : 0.f;
     
-    [self.navigationBar popNavigationItemAnimated:animated];
+    [self popToRootNavigationItem];
+    
     [self transitionFromViewController:currentViewController
                       toViewController:rootViewController
                               duration:duration
                                options:0
                             animations:^{
                                 rootViewController.view.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-                                
                             }
                             completion:^(BOOL finished) {
                                 [currentViewController removeFromParentViewController];
@@ -207,10 +190,12 @@
                                     UIViewController *tmp = [self.childViewControllers lastObject];
                                     [tmp willMoveToParentViewController:nil];
                                     [tmp removeFromParentViewController];
-                                    [tmp.view removeFromSuperview];
                                 }
                                 
+                                NSLog(@"the child VCs are %@",self.childViewControllers);
+                               
                                 self.currentContentViewController = rootViewController;
+                                
                                 [rootViewController didMoveToParentViewController:self];
                                 _transitionInProgress = NO;
                             }];
@@ -233,6 +218,24 @@
     self.navigationItem.title = rootViewController.title;
 }
 
+
+- (void)popToRootNavigationItem
+{
+    NSArray *navigationItems = self.navigationBar.items;
+    
+    if (navigationItems.count == 1) {
+        return;
+    }
+    
+    if (navigationItems.count == 2) {
+        [self.navigationBar popNavigationItemAnimated:YES];
+    } else {
+        [self.navigationBar popNavigationItemAnimated:NO];
+    }
+
+    [self popToRootNavigationItem];
+}
+
 #pragma mark UINavigationBar Delegate
 
 - (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPushItem:(UINavigationItem *)item
@@ -245,7 +248,9 @@
 }
 - (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item
 {
-    [self popViewControllerAnimated:YES];
+    if (!_transitionInProgress) {
+        [self popViewControllerAnimated:YES];
+    }
     
     return YES;
 }

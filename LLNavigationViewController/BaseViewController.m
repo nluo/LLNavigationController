@@ -7,6 +7,7 @@
 //
 
 #import "BaseViewController.h"
+#import "LLNavigationViewController.h"
 
 @interface BaseViewController ()
 
@@ -29,9 +30,7 @@
     // Do any additional setup after loading the view.
     self.title = @"Base";
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(150.f, 50.f, 20.f, 30.f)];
-    label.text = @"base VC";
-    [self.view addSubview:label];
+    NSLog(@"the parent VC is %@", self.parentViewController);
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,5 +49,16 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)pushViewController:(id)sender {
+    LLNavigationViewController *nav = (LLNavigationViewController *)self.parentViewController;
+    BaseViewController *base = [self.storyboard instantiateViewControllerWithIdentifier:@"BaseVC"];
+    
+    [nav pushViewController:base animated:YES];
+}
+- (IBAction)popToRootViewController:(id)sender {
+    LLNavigationViewController *nav = (LLNavigationViewController *)self.parentViewController;
+    [nav popToRootViewControllerAnimated:YES];
+
+}
 
 @end

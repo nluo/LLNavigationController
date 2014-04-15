@@ -14,9 +14,6 @@
 @property (nonatomic, readonly, retain) UIViewController *topViewController;
 
 
-- (id)initWithRootViewController: (UIViewController *)rootViewController;
-
-
 /**
  Push the child view controller into its parent stack and updates the display
  

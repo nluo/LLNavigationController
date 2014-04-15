@@ -39,7 +39,7 @@
 }
 - (IBAction)press:(id)sender {
     NSLog(@"pressed %@", self.LLNav);
-    BaseViewController *base = [[BaseViewController alloc] initWithNibName:nil bundle:nil];
+    BaseViewController *base = [self.storyboard instantiateViewControllerWithIdentifier:@"BaseVC"];
 
     [self.LLNav pushViewController:base animated:YES completion:nil];
 }
