@@ -14,7 +14,7 @@
 		B30F940518F817A80021E1E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B30F940418F817A80021E1E2 /* main.m */; };
 		B30F940918F817A80021E1E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B30F940818F817A80021E1E2 /* AppDelegate.m */; };
 		B30F940C18F817A80021E1E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B30F940A18F817A80021E1E2 /* Main.storyboard */; };
-		B30F940F18F817A80021E1E2 /* LLNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B30F940E18F817A80021E1E2 /* LLNavigationViewController.m */; };
+		B30F940F18F817A80021E1E2 /* LLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B30F940E18F817A80021E1E2 /* LLNavigationController.m */; };
 		B30F941118F817A80021E1E2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B30F941018F817A80021E1E2 /* Images.xcassets */; };
 		B30F941818F817A80021E1E2 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B30F941718F817A80021E1E2 /* XCTest.framework */; };
 		B30F941918F817A80021E1E2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B30F93F818F817A80021E1E2 /* Foundation.framework */; };
@@ -25,7 +25,6 @@
 		B30F943118F9A15A0021E1E2 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B30F942F18F9A15A0021E1E2 /* TestViewController.xib */; };
 		B370BB4E18F9A2E800EA98C3 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B370BB4D18F9A2E800EA98C3 /* BaseViewController.m */; };
 		B370BB8318FD305500EA98C3 /* pushViewControllerSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = B370BB8218FD305500EA98C3 /* pushViewControllerSegue.m */; };
-		B370BB8918FD340500EA98C3 /* TestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B370BB8818FD340500EA98C3 /* TestTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,34 +38,32 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B30F93F518F817A80021E1E2 /* LLNavigationViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LLNavigationViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B30F93F518F817A80021E1E2 /* LLNavigationController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LLNavigationController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B30F93F818F817A80021E1E2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B30F93FA18F817A80021E1E2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B30F93FC18F817A80021E1E2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		B30F940018F817A80021E1E2 /* LLNavigationViewController-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LLNavigationViewController-Info.plist"; sourceTree = "<group>"; };
+		B30F940018F817A80021E1E2 /* LLNavigationController-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LLNavigationController-Info.plist"; sourceTree = "<group>"; };
 		B30F940218F817A80021E1E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B30F940418F817A80021E1E2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B30F940618F817A80021E1E2 /* LLNavigationViewController-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLNavigationViewController-Prefix.pch"; sourceTree = "<group>"; };
+		B30F940618F817A80021E1E2 /* LLNavigationController-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLNavigationController-Prefix.pch"; sourceTree = "<group>"; };
 		B30F940718F817A80021E1E2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B30F940818F817A80021E1E2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B30F940B18F817A80021E1E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B30F940D18F817A80021E1E2 /* LLNavigationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLNavigationViewController.h; sourceTree = "<group>"; };
-		B30F940E18F817A80021E1E2 /* LLNavigationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLNavigationViewController.m; sourceTree = "<group>"; };
+		B30F940D18F817A80021E1E2 /* LLNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLNavigationController.h; sourceTree = "<group>"; };
+		B30F940E18F817A80021E1E2 /* LLNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLNavigationController.m; sourceTree = "<group>"; };
 		B30F941018F817A80021E1E2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		B30F941618F817A80021E1E2 /* LLNavigationViewControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LLNavigationViewControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B30F941618F817A80021E1E2 /* LLNavigationControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LLNavigationControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B30F941718F817A80021E1E2 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		B30F941F18F817A80021E1E2 /* LLNavigationViewControllerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LLNavigationViewControllerTests-Info.plist"; sourceTree = "<group>"; };
+		B30F941F18F817A80021E1E2 /* LLNavigationControllerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LLNavigationControllerTests-Info.plist"; sourceTree = "<group>"; };
 		B30F942118F817A80021E1E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B30F942318F817A80021E1E2 /* LLNavigationViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLNavigationViewControllerTests.m; sourceTree = "<group>"; };
 		B30F942D18F9A15A0021E1E2 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		B30F942E18F9A15A0021E1E2 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		B30F942F18F9A15A0021E1E2 /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
-		B370BB4C18F9A2E800EA98C3 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseViewController.h; path = LLNavigationViewController/BaseViewController.h; sourceTree = "<group>"; };
-		B370BB4D18F9A2E800EA98C3 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseViewController.m; path = LLNavigationViewController/BaseViewController.m; sourceTree = "<group>"; };
+		B370BB4C18F9A2E800EA98C3 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		B370BB4D18F9A2E800EA98C3 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		B370BB8118FD305500EA98C3 /* pushViewControllerSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pushViewControllerSegue.h; sourceTree = "<group>"; };
 		B370BB8218FD305500EA98C3 /* pushViewControllerSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pushViewControllerSegue.m; sourceTree = "<group>"; };
-		B370BB8718FD340500EA98C3 /* TestTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTableViewController.h; sourceTree = "<group>"; };
-		B370BB8818FD340500EA98C3 /* TestTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,10 +93,8 @@
 		B30F93EC18F817A80021E1E2 = {
 			isa = PBXGroup;
 			children = (
-				B370BB4C18F9A2E800EA98C3 /* BaseViewController.h */,
-				B370BB4D18F9A2E800EA98C3 /* BaseViewController.m */,
-				B30F93FE18F817A80021E1E2 /* LLNavigationViewController */,
-				B30F941D18F817A80021E1E2 /* LLNavigationViewControllerTests */,
+				B30F93FE18F817A80021E1E2 /* LLNavigationController */,
+				B30F941D18F817A80021E1E2 /* LLNavigationControllerTests */,
 				B30F93F718F817A80021E1E2 /* Frameworks */,
 				B30F93F618F817A80021E1E2 /* Products */,
 			);
@@ -108,8 +103,8 @@
 		B30F93F618F817A80021E1E2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B30F93F518F817A80021E1E2 /* LLNavigationViewController.app */,
-				B30F941618F817A80021E1E2 /* LLNavigationViewControllerTests.xctest */,
+				B30F93F518F817A80021E1E2 /* LLNavigationController.app */,
+				B30F941618F817A80021E1E2 /* LLNavigationControllerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -125,50 +120,52 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		B30F93FE18F817A80021E1E2 /* LLNavigationViewController */ = {
+		B30F93FE18F817A80021E1E2 /* LLNavigationController */ = {
 			isa = PBXGroup;
 			children = (
-				B370BB8718FD340500EA98C3 /* TestTableViewController.h */,
-				B370BB8818FD340500EA98C3 /* TestTableViewController.m */,
+				B370BB4C18F9A2E800EA98C3 /* BaseViewController.h */,
+				B370BB4D18F9A2E800EA98C3 /* BaseViewController.m */,
 				B370BB8018FD300E00EA98C3 /* Storyboard Segues */,
 				B30F940718F817A80021E1E2 /* AppDelegate.h */,
 				B30F940818F817A80021E1E2 /* AppDelegate.m */,
 				B30F940A18F817A80021E1E2 /* Main.storyboard */,
-				B30F940D18F817A80021E1E2 /* LLNavigationViewController.h */,
+				B30F940D18F817A80021E1E2 /* LLNavigationController.h */,
 				B30F942D18F9A15A0021E1E2 /* TestViewController.h */,
 				B30F942E18F9A15A0021E1E2 /* TestViewController.m */,
 				B30F942F18F9A15A0021E1E2 /* TestViewController.xib */,
-				B30F940E18F817A80021E1E2 /* LLNavigationViewController.m */,
+				B30F940E18F817A80021E1E2 /* LLNavigationController.m */,
 				B30F941018F817A80021E1E2 /* Images.xcassets */,
 				B30F93FF18F817A80021E1E2 /* Supporting Files */,
 			);
+			name = LLNavigationController;
 			path = LLNavigationViewController;
 			sourceTree = "<group>";
 		};
 		B30F93FF18F817A80021E1E2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B30F940018F817A80021E1E2 /* LLNavigationViewController-Info.plist */,
+				B30F940018F817A80021E1E2 /* LLNavigationController-Info.plist */,
 				B30F940118F817A80021E1E2 /* InfoPlist.strings */,
 				B30F940418F817A80021E1E2 /* main.m */,
-				B30F940618F817A80021E1E2 /* LLNavigationViewController-Prefix.pch */,
+				B30F940618F817A80021E1E2 /* LLNavigationController-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		B30F941D18F817A80021E1E2 /* LLNavigationViewControllerTests */ = {
+		B30F941D18F817A80021E1E2 /* LLNavigationControllerTests */ = {
 			isa = PBXGroup;
 			children = (
 				B30F942318F817A80021E1E2 /* LLNavigationViewControllerTests.m */,
 				B30F941E18F817A80021E1E2 /* Supporting Files */,
 			);
+			name = LLNavigationControllerTests;
 			path = LLNavigationViewControllerTests;
 			sourceTree = "<group>";
 		};
 		B30F941E18F817A80021E1E2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B30F941F18F817A80021E1E2 /* LLNavigationViewControllerTests-Info.plist */,
+				B30F941F18F817A80021E1E2 /* LLNavigationControllerTests-Info.plist */,
 				B30F942018F817A80021E1E2 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -186,9 +183,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B30F93F418F817A80021E1E2 /* LLNavigationViewController */ = {
+		B30F93F418F817A80021E1E2 /* LLNavigationController */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B30F942718F817A80021E1E2 /* Build configuration list for PBXNativeTarget "LLNavigationViewController" */;
+			buildConfigurationList = B30F942718F817A80021E1E2 /* Build configuration list for PBXNativeTarget "LLNavigationController" */;
 			buildPhases = (
 				B30F93F118F817A80021E1E2 /* Sources */,
 				B30F93F218F817A80021E1E2 /* Frameworks */,
@@ -198,14 +195,14 @@
 			);
 			dependencies = (
 			);
-			name = LLNavigationViewController;
+			name = LLNavigationController;
 			productName = LLNavigationViewController;
-			productReference = B30F93F518F817A80021E1E2 /* LLNavigationViewController.app */;
+			productReference = B30F93F518F817A80021E1E2 /* LLNavigationController.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B30F941518F817A80021E1E2 /* LLNavigationViewControllerTests */ = {
+		B30F941518F817A80021E1E2 /* LLNavigationControllerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B30F942A18F817A80021E1E2 /* Build configuration list for PBXNativeTarget "LLNavigationViewControllerTests" */;
+			buildConfigurationList = B30F942A18F817A80021E1E2 /* Build configuration list for PBXNativeTarget "LLNavigationControllerTests" */;
 			buildPhases = (
 				B30F941218F817A80021E1E2 /* Sources */,
 				B30F941318F817A80021E1E2 /* Frameworks */,
@@ -216,9 +213,9 @@
 			dependencies = (
 				B30F941C18F817A80021E1E2 /* PBXTargetDependency */,
 			);
-			name = LLNavigationViewControllerTests;
+			name = LLNavigationControllerTests;
 			productName = LLNavigationViewControllerTests;
-			productReference = B30F941618F817A80021E1E2 /* LLNavigationViewControllerTests.xctest */;
+			productReference = B30F941618F817A80021E1E2 /* LLNavigationControllerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -235,7 +232,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B30F93F018F817A80021E1E2 /* Build configuration list for PBXProject "LLNavigationViewController" */;
+			buildConfigurationList = B30F93F018F817A80021E1E2 /* Build configuration list for PBXProject "LLNavigationController" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -248,8 +245,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B30F93F418F817A80021E1E2 /* LLNavigationViewController */,
-				B30F941518F817A80021E1E2 /* LLNavigationViewControllerTests */,
+				B30F93F418F817A80021E1E2 /* LLNavigationController */,
+				B30F941518F817A80021E1E2 /* LLNavigationControllerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -282,9 +279,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B370BB8318FD305500EA98C3 /* pushViewControllerSegue.m in Sources */,
-				B30F940F18F817A80021E1E2 /* LLNavigationViewController.m in Sources */,
+				B30F940F18F817A80021E1E2 /* LLNavigationController.m in Sources */,
 				B370BB4E18F9A2E800EA98C3 /* BaseViewController.m in Sources */,
-				B370BB8918FD340500EA98C3 /* TestTableViewController.m in Sources */,
 				B30F940918F817A80021E1E2 /* AppDelegate.m in Sources */,
 				B30F943018F9A15A0021E1E2 /* TestViewController.m in Sources */,
 				B30F940518F817A80021E1E2 /* main.m in Sources */,
@@ -304,7 +300,7 @@
 /* Begin PBXTargetDependency section */
 		B30F941C18F817A80021E1E2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B30F93F418F817A80021E1E2 /* LLNavigationViewController */;
+			target = B30F93F418F817A80021E1E2 /* LLNavigationController */;
 			targetProxy = B30F941B18F817A80021E1E2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -413,9 +409,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "LLNavigationViewController/LLNavigationViewController-Prefix.pch";
-				INFOPLIST_FILE = "LLNavigationViewController/LLNavigationViewController-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "LLNavigationViewController/LLNavigationController-Prefix.pch";
+				INFOPLIST_FILE = "LLNavigationViewController/LLNavigationController-Info.plist";
+				PRODUCT_NAME = LLNavigationController;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -426,9 +422,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "LLNavigationViewController/LLNavigationViewController-Prefix.pch";
-				INFOPLIST_FILE = "LLNavigationViewController/LLNavigationViewController-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "LLNavigationViewController/LLNavigationController-Prefix.pch";
+				INFOPLIST_FILE = "LLNavigationViewController/LLNavigationController-Info.plist";
+				PRODUCT_NAME = LLNavigationController;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -448,8 +444,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "LLNavigationViewControllerTests/LLNavigationViewControllerTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "LLNavigationViewControllerTests/LLNavigationControllerTests-Info.plist";
+				PRODUCT_NAME = LLNavigationControllerTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -466,8 +462,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LLNavigationViewController/LLNavigationViewController-Prefix.pch";
-				INFOPLIST_FILE = "LLNavigationViewControllerTests/LLNavigationViewControllerTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "LLNavigationViewControllerTests/LLNavigationControllerTests-Info.plist";
+				PRODUCT_NAME = LLNavigationControllerTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -476,7 +472,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B30F93F018F817A80021E1E2 /* Build configuration list for PBXProject "LLNavigationViewController" */ = {
+		B30F93F018F817A80021E1E2 /* Build configuration list for PBXProject "LLNavigationController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B30F942518F817A80021E1E2 /* Debug */,
@@ -485,7 +481,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B30F942718F817A80021E1E2 /* Build configuration list for PBXNativeTarget "LLNavigationViewController" */ = {
+		B30F942718F817A80021E1E2 /* Build configuration list for PBXNativeTarget "LLNavigationController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B30F942818F817A80021E1E2 /* Debug */,
@@ -494,7 +490,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B30F942A18F817A80021E1E2 /* Build configuration list for PBXNativeTarget "LLNavigationViewControllerTests" */ = {
+		B30F942A18F817A80021E1E2 /* Build configuration list for PBXNativeTarget "LLNavigationControllerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B30F942B18F817A80021E1E2 /* Debug */,

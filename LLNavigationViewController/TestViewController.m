@@ -46,8 +46,8 @@
 }
 
 
-- (LLNavigationViewController *)LLNav {
+- (LLNavigationController *)LLNav {
 
-    return (LLNavigationViewController *)self.parentViewController;
+    return (LLNavigationController *)self.parentViewController;
 }
 @end

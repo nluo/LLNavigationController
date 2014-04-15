@@ -6,12 +6,12 @@
 //  Copyright (c) 2014 Nick Luo. All rights reserved.
 //
 
-#import "LLNavigationViewController.h"
+#import "LLNavigationController.h"
 #import "TestViewController.h"
 
 #define TRANSITION_TIME 0.4f
 
-@interface LLNavigationViewController () <UINavigationBarDelegate>
+@interface LLNavigationController () <UINavigationBarDelegate>
 
 @property (strong, nonatomic, readwrite) UIViewController *currentContentViewController;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation LLNavigationViewController
+@implementation LLNavigationController
 
 @synthesize currentContentViewController = _currentContentViewController, containerView = _containerView, transitionInProgress = _transitionInProgress;
 

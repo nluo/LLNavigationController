@@ -7,7 +7,7 @@
 //
 
 #import "BaseViewController.h"
-#import "LLNavigationViewController.h"
+#import "LLNavigationController.h"
 
 @interface BaseViewController ()
 
@@ -50,20 +50,20 @@
 }
 */
 - (IBAction)pushViewController:(id)sender {
-    LLNavigationViewController *nav = (LLNavigationViewController *)self.parentViewController;
+    LLNavigationController *nav = (LLNavigationController *)self.parentViewController;
     BaseViewController *base = [self.storyboard instantiateViewControllerWithIdentifier:@"BaseVC"];
     
     [nav pushViewController:base animated:YES];
 }
 - (IBAction)popToRootViewController:(id)sender {
-    LLNavigationViewController *nav = (LLNavigationViewController *)self.parentViewController;
+    LLNavigationController *nav = (LLNavigationController *)self.parentViewController;
     [nav popToRootViewControllerAnimated:YES];
 
 }
 
 - (IBAction)popToViewController:(id)sender {
     NSLog(@"pop to  view controller");
-    LLNavigationViewController *nav = (LLNavigationViewController *)self.parentViewController;
+    LLNavigationController *nav = (LLNavigationController *)self.parentViewController;
     UIViewController *rootViewController = nav.childViewControllers[1];
     
     [nav popToViewController:rootViewController animated:YES];

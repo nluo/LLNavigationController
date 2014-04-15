@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LLNavigationViewController.h"
+#import "LLNavigationController.h"
 
 @interface TestViewController : UIViewController
 
-@property (readonly,nonatomic, getter = LLNav) LLNavigationViewController *LLNav;
+@property (readonly,nonatomic, getter = LLNav) LLNavigationController *LLNav;
 
 @end

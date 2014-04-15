@@ -7,18 +7,18 @@
 //
 
 #import "pushViewControllerSegue.h"
-#import "LLNavigationViewController.h"
+#import "LLNavigationController.h"
 
 @implementation pushViewControllerSegue
 
 - (void)perform {
-    if ([self.sourceViewController isKindOfClass:[LLNavigationViewController class]]) {
+    if ([self.sourceViewController isKindOfClass:[LLNavigationController class]]) {
         
-        [(LLNavigationViewController *)self.sourceViewController pushViewController:(UIViewController *)self.destinationViewController animated:NO];
+        [(LLNavigationController *)self.sourceViewController pushViewController:(UIViewController *)self.destinationViewController animated:NO];
     } else {
         
         UIViewController *temp = self.sourceViewController;
-        [(LLNavigationViewController *)temp.parentViewController pushViewController:(UIViewController *)self.destinationViewController animated:YES];
+        [(LLNavigationController *)temp.parentViewController pushViewController:(UIViewController *)self.destinationViewController animated:YES];
     }
     
 }
