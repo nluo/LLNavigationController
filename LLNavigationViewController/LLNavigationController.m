@@ -11,7 +11,7 @@
 
 #define TRANSITION_TIME 0.4f
 
-@interface LLNavigationController () <UINavigationBarDelegate>
+@interface LLNavigationController () <UINavigationBarDelegate, UIBarPositioningDelegate>
 
 @property (strong, nonatomic, readwrite) UIViewController *currentContentViewController;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
@@ -22,7 +22,6 @@
 @implementation LLNavigationController
 
 @synthesize currentContentViewController = _currentContentViewController, containerView = _containerView, transitionInProgress = _transitionInProgress;
-
 
 - (void)viewDidLoad
 {
@@ -41,9 +40,10 @@
     }
     @catch (NSException *exception) {
         NSLog(@"Please make sure you have connected your initial view controller to the navigation controller and set the identifier to SetRootViewController. The exception is %@", exception);
-          abort();
+        abort();
     }
-
+    
+    self.navigationBar.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -329,6 +329,13 @@
 - (void)navigationBar:(UINavigationBar *)navigationBar didPopItem:(UINavigationItem *)item
 {
     
+}
+
+#pragma mark - UIBarPosition Delegate
+
+- (UIBarPosition)positionForBar:(id <UIBarPositioning>)bar
+{
+    return UIBarPositionTopAttached;
 }
 
 @end
