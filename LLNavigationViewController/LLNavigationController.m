@@ -9,7 +9,7 @@
 #import "LLNavigationController.h"
 #import "TestViewController.h"
 
-#define TRANSITION_TIME 0.4f
+#define TRANSITION_TIME .4f
 
 @interface LLNavigationController () <UINavigationBarDelegate, UIBarPositioningDelegate>
 
@@ -60,21 +60,26 @@
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated completion:(void (^)())completion
 {
+    
+    if (_transitionInProgress) return;
+    
+    _transitionInProgress = YES;
+    
     UIViewController *currentViewController = self.topViewController;
     [self addChildViewController:viewController];
     
+    
+    // Used when setting root view controller
     if (self.childViewControllers.count == 1) {
         viewController.view.frame = self.containerView.frame;
         [self.view addSubview:viewController.view];
         
         [self.navigationBar pushNavigationItem:viewController.navigationItem animated:NO];
+        
+        [viewController didMoveToParentViewController:self];
+        _transitionInProgress = NO;
         return;
     }
-    
-
-    if (_transitionInProgress) return;
-    
-    _transitionInProgress = YES;
     
     // the off-screen rect where we transition from
     CGRect offScreen = self.containerView.frame;
@@ -96,24 +101,34 @@
      transitionFromViewController:currentViewController
      toViewController:viewController
      duration:duration
-     options:UIViewAnimationOptionCurveEaseOut
+     options:UIViewAnimationOptionCurveEaseInOut
      animations:^{
          
          viewController.view.frame = self.containerView.frame;
      }
      completion:^(BOOL finished) {
          
-         // enable the interaction again
-         self.currentContentViewController.view.userInteractionEnabled = YES;
-         
-         self.currentContentViewController = viewController;
-         //[self configureBackButton];
-         [viewController didMoveToParentViewController:self];
-         
-         _transitionInProgress = NO;
+         if (finished) {
+             // enable the interaction again
+             self.currentContentViewController.view.userInteractionEnabled = YES;
+             
+             self.currentContentViewController = viewController;
+
+             [viewController didMoveToParentViewController:self];
+             
+             _transitionInProgress = NO;
+             
+             
+             if (completion) completion();
+         }
         
      }
      ];
+    
+    if (animated == NO) {
+        [viewController didMoveToParentViewController:self];
+        _transitionInProgress = NO;
+    }
 }
 
 - (UIViewController *)topViewController
@@ -127,11 +142,13 @@
 
 - (UIViewController *)popViewControllerAnimated:(BOOL)animated withCompletion:(void(^)())completion
 {
+    if (_transitionInProgress) return nil;
+    
+    _transitionInProgress = YES;
+    
     if (self.childViewControllers.count == 1) {
         return nil;
     }
-    
-    _transitionInProgress = YES;
     
     UIViewController *currentViewController = self.topViewController;
     UIViewController *toViewController = [self.childViewControllers objectAtIndex:(self.childViewControllers.count-2)];
@@ -172,6 +189,10 @@
 
 - (NSArray *)popToViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
+    
+    if (_transitionInProgress) return nil;
+    
+    _transitionInProgress = YES;
 
     if ([self.childViewControllers indexOfObject:viewController] == NSNotFound) {
         return nil;
@@ -233,6 +254,10 @@
 
 - (NSArray *)popToRootViewControllerAnimated:(BOOL)animated
 {
+    
+    if (_transitionInProgress) return nil;
+    
+    _transitionInProgress = YES;
     
     // if only 1 controller left we return nil
     if ([self.childViewControllers count] == 1) {
